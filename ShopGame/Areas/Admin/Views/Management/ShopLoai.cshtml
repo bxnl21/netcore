@@ -1,0 +1,94 @@
+﻿@model IEnumerable<ShopGame.Models.SanPham>
+@{
+    ShopGame.Models.Pager page = new ShopGame.Models.Pager();
+
+    int pageNo = 0;
+
+    if (ViewBag.Pager != null)
+    {
+        page = ViewBag.Pager;
+        pageNo = page.CurrentPage;
+    }
+}
+<body>
+
+
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="product__item">
+                    <div class="product__item__pic set-bg" data-setbg="/img/@item.Anh">
+                        <ul class="product__item__pic__hover">
+                            <li><a href="#" class="btnCT mapro" id="tMa" va="@item.MaSanPham"><i class="fa fa-eye" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-cart-plus" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="product__item__text">
+                        <h6><a href="/Home/Detail?ma=@item.MaSanPham" value="@item.MaSanPham">@item.TenSanPham</a></h6>
+                        <h5>@item.GiaBan</h5>
+
+                    </div>
+                </div>
+            </div>
+        }
+
+
+        <br />
+
+    </div>
+
+    <div class="product__pagination" style="margin: auto;text-align:center">
+        <a href="#"><i class="fa fa-long-arrow-left"></i></a>
+        @if (page.TotalItems > 0)
+        {
+            @for (var pg = page.StartPage; pg <= page.TotalItems; pg++)
+            {
+                if (pg > 0)
+                {
+                    <a asp-action="Index" asp-controller="Home" asp-route-pageNumber="@pg">@pg</a>
+                }
+            }
+        }
+        else
+        {
+            @for (var pg = page.StartPage; pg <= page.TotalItems; pg++)
+            {
+                if (pg > 0)
+                {
+                    <a asp-action="Index" asp-controller="Home" asp-route-pageNumber="@pg">1</a>
+                }
+            }
+        }
+        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+    </div>
+    <script>
+        $(function () {
+
+
+            $(".mapro").click(function (e) {
+                //e.preventDefault();
+                var a = $(this).attr("va");
+                $.ajax(
+                    {
+
+                        url: "/Home/XuatTheoMa",
+                        type: "GET",
+                        data: { ma: a },
+                        success: function (datare) {
+                            $(".modal-body").html(datare);
+                            $('#myModalCTSP').modal();
+                        },
+                        error: function () {
+
+                        }
+                    });
+            })
+        })
+
+
+    </script>
+</body>

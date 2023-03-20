@@ -1,0 +1,27 @@
+﻿@model ShopGame.Models.NhanVien
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<link rel="stylesheet" href="/css/Login.css" />
+<section class="login">
+    <div class="login_box">
+        <div class="left">
+            <div class="top_link"><a href="/Home/Index"><img src="" alt="">Quay về trang chủ</a></div>
+            <div class="contact">
+                <form action="/admin/Login/Check" method="post">
+                    <h3>Đăng nhập Admin</h3>
+
+                    <input type="text" placeholder="Tên đăng nhập"
+                           id="Id" name="Id">
+
+                    <input type="text" placeholder="Mật khẩu"
+                           id="PassWordd" name="PassWordd">
+                    <button type="submit" class="submit">Đăng Nhập</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!---->
+</section>

@@ -1,0 +1,131 @@
+﻿@using Microsoft.AspNetCore.Http;
+@using Newtonsoft.Json;
+@{
+    var data = Context.Session.GetString("cart");
+
+    int coutCart = 0;
+    if (data == null)
+    {
+        coutCart = 0;
+    }
+    else
+    {
+        var data2 = Context.Session.GetString("cart");
+        List<Cartitem> dataCart = JsonConvert.DeserializeObject<List<Cartitem>>(data2);
+        foreach (var item in dataCart)
+        {
+            coutCart += item.SoLuong;
+        }
+    }
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ShopGame</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/headers/">
+    <link rel="stylesheet" href="/css/headers.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+</head>
+<body>
+    <header class="p-3 bg-primary text-white">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                @*<a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap" /></svg>
+                    </a>*@
+                <a href="#"><img src="/img/Logo.png" alt="" style="width: 110px"></a>
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="#" class="nav-link px-2 text-white">Trang Chủ</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+
+
+                </ul>
+
+                <!-- Gio hang -->
+                <div>
+                    <a class="nav-item nav-link" asp-area="" asp-controller="Home" asp-action="ListCart">
+                        <span style="font-size: 26px; font-weight: 300; color: #000000 ">
+                            <i class="bi bi-cart">
+                                <img src="~/img/cart.jpg" width="50px" height="45px" />
+                            </i>
+                            @coutCart
+                        </span>
+                    </a>
+                </div>
+                <!-- end gio hang-->
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                    <input id="myInput" type="search" class="form-control form-control-dark text-dark bg-white" placeholder="Search..." aria-label="Search">
+                </form>
+
+                <div class="text-end">
+                    <a class="btn btn-outline-dark me-2" asp-action="Login">Login</a>
+                    <button type="button" class="btn btn-warning">Sign-up</button>
+                </div>
+            </div>
+        </div>
+    </header>
+    @RenderBody()
+
+
+    <!-- Footer -->
+    <section id="footer">
+        <div class="container">
+            <div class="row text-center text-xs-center text-sm-left text-md-left">
+                <div class="col-xs-12 col-sm-4 col-md-4">
+                    <h5>Giới Thiệu</h5>
+                    <ul class="list-unstyled quick-links">
+                        <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Game bản quyền là gì?</a></li>
+                        <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Giới Thiệu LOGSHOP</a></li>
+                        <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Điều khoản dịch vụ</a></li>
+                        <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Chính sách bảo mật</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4">
+                    <h5>Tài Khoản</h5>
+                    <ul class="list-unstyled quick-links">
+                        <li><a asp-action="Login"><i class="fa fa-angle-double-right"></i>Đăng nhập</a></li>
+                        <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Đăng ký</a></li>
+                        <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Hỗ trợ</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4">
+                    <h5>Các Hãng Game</h5>
+                    <ul class="list-unstyled quick-links">
+                        <li><a href="http://store.steampowered.com"><i class="fa fa-angle-double-right"></i>Steam</a></li>
+                        <li><a href="https://club.ubisoft.com"><i class="fa fa-angle-double-right"></i>Uplay</a></li>
+                        <li><a href="https://www.origin.com"><i class="fa fa-angle-double-right"></i>Origin</a></li>
+                        <li><a href="https://www.gog.com"><i class="fa fa-angle-double-right"></i>GOG</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+                    <ul class="list-unstyled list-inline social text-center">
+                        <h5>Các hình thức liên hệ</h5>
+                        <li class="list-inline-item"><a href="https://www.facebook.com/NhatLong2001"><i class="fa fa-facebook"></i></a></li>
+                        <li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-twitter"></i></a></li>
+                        <li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-instagram"></i></a></li>
+                        <li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-google-plus"></i></a></li>
+                        <li class="list-inline-item"><a href="javascript:void();" target="_blank"><i class="fa fa-envelope"></i></a></li>
+                    </ul>
+                </div>
+                </hr>
+            </div>
+        </div>
+    </section>
+    <!-- ./Footer -->
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap");
+
+:root {
+    --green: #1c4f1b;
+    --green2: rgba(17, 84, 10, 0.83);
+    --black: rgba(0, 0, 0, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+    transition: 0.2s linear;
+}
+
+
+/* font-family: 'Roboto', sans-serif; */
+
+.shopName {
+    font-weight: bold;
+    color: white;
+}
+
+
+
+.bannerhome {
+    display: flex;
+    align-items: center;
+    min-height: 90vh;
+    background-size: cover;
+    background-position: center;
+    background-image: url("../img/bg/bg2.jpg");
+}
+
+    .bannerhome .banner-text {
+        /*  background-color: rgba(127, 57, 22, 0.6);*/
+        width: 490px;
+    }
+
+        .bannerhome .banner-text h1 {
+            font-size: 55px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+            font-family: "Bungee Shade", cursive;
+        }
+
+
+
+.banner-btn {
+    width: 350px;
+    height: 35px;
+    display: inline-block;
+    margin-top: 15px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.82);
+    color: var(--green);
+    padding: 0 5px;
+    font-size: 25px;
+    font-family: "Roboto", sans-serif;
+}
+
+    .banner-btn:hover {
+        background-color: var(--green2);
+        color: rgba(255, 255, 255, 0.82);
+        text-decoration: none;
+    }
+
+
+
+
+
+
+
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+    .product-container .banner {
+        flex: 1 1 40rem;
+        height: 30rem;
+        overflow: hidden;
+        position: relative;
+    }
+
+        .product-container .banner .content {
+            position: absolute;
+            top: 70%;
+            left: 10%;
+        }
+
+        .product-container .banner img {
+            height: 100%;
+            width: 70%;
+            object-fit: cover;
+        }
+
+        .product-container .banner .content h3 {
+            font-size: 3rem;
+            color: var(--green);
+        }
+
+
+
+ 
+
+
+
+
+

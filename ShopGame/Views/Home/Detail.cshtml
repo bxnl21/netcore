@@ -1,0 +1,48 @@
+﻿@model ShopGame.Models.SanPham
+
+
+<link rel="stylesheet" href="~/css/Detail.css" />
+<div class="container">
+    <div class="card">
+        <div class="container-fliud">
+            <div class="wrapper row">
+                <div class="preview col-md-6">
+
+                    <div class="preview-pic tab-content">
+                        <div class="tab-pane active" id="pic-1"><img src="~/img/@Model.Anh" /></div>
+
+                    </div>
+                    <ul class="preview-thumbnail nav nav-tabs">
+                        <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="~/img/@Model.Anh" /></a></li>
+                        <li><a data-target="#pic-2" data-toggle="tab"><img src="~/img/@Model.Anh" /></a></li>
+                        <li><a data-target="#pic-3" data-toggle="tab"><img src="~/img/@Model.Anh" /></a></li>
+                        <li><a data-target="#pic-4" data-toggle="tab"><img src="~/img/@Model.Anh" /></a></li>
+                        <li><a data-target="#pic-5" data-toggle="tab"><img src="~/img/@Model.Anh" /></a></li>
+                    </ul>
+
+                </div>
+                <div class="details col-md-6">
+                    <h3 class="product-title" style=font-size:40px>@Model.TenSanPham</h3>
+                    <div class="rating">
+                        <div class="stars" style="font-size:30px">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                        </div>
+                        <span class="review-no" style="font-size:25px"> đánh giá</span>
+                    </div>
+                    <p class="product-description" style="font-size:20px">content</p>
+                    <h4 class="price" style="font-size:20px">Giá bán: <span>@Model.GiaBan</span></h4>
+
+                    <div class="action">
+                        <a asp-controller="Home" asp-action="addCart" asp-route-id="@Model.MaSanPham" class="btn btn-primary">Thêm vào giỏ</a>
+                        <a class="btn btn-primary"><span class="fa fa-heart"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

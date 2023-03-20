@@ -1,0 +1,249 @@
+﻿@model IEnumerable<SanPham>
+@using Microsoft.AspNetCore.Http;
+@using Newtonsoft.Json;
+@{
+    ViewData["Title"] = "Website Bán Game";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/headers/">
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<script src="~/js/site.js"></script>
+<link rel="stylesheet" href="~/css/site.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+
+@*Danh muc*@
+<section class="Cont">
+    <div class="sidebar__item">
+        <img src="~/img/backgroup.jpg" width="10px" />
+        <div style="margin-top: 10px; margin-left: 480px; ">
+            <h1 style="color:aqua">LOG Shop Kính Chào Quý Khách</h1>
+        </div>
+        @*<h4 style="text-decoration: underline #7fad39;">Game Theo Hãng</h4>
+            <ul>
+
+                <li><a><button id="Steam" value="1" style="background-color: blueviolet; border: 0px ">Steam</button></a></li>
+                <li><a><button id="Uplay" value="2" style="background-color: blueviolet; border: 0px ">Uplay</button></a></li>
+                <li><a><button id="Origin" value="3" style="background-color: blueviolet; border: 0px ">Origin</button></a></li>
+                <li><a><button id="GOG" value="4" style="background-color: blueviolet; border: 0px ">GOG</button></a></li>
+
+            </ul>*@
+        <div style="margin-left: 490px">
+            <h1 style="color:crimson">Shop chuyên cung cấp các key game bản quyền</h1>
+        </div>
+    </div>
+
+    <div class="b-example-divider"></div>
+</section>
+<section id="product">
+    <div class="product-container">
+        <div class="banner">
+            <img src="~/img/nsx/steam.jpg"  >
+            <div class="content">
+                <button value="1" id="btnSteam" class="btn-success">Xem game của hãng<i class="fas fa-seedling"></i></button>
+            </div>
+        </div>
+
+        <div class="banner">
+            <img src="~/img/nsx/uplay.png">
+            <div class="content">
+                <button value="2" id="btnUplay" class="btn-success">Xem game của hãng<i class="fas fa-seedling"></i></button>
+            </div>
+        </div>
+    </div>
+    <div class="product-container">
+        <div class="banner">
+            <img src="~/img/nsx/origin.jpeg" >
+            <div class="content">
+                <button value="3" id="btnOrigin" class="btn-success">Xem game của hãng<i class="fas fa-seedling"></i></button>
+            </div>
+        </div>
+
+        <div class="banner">
+            <img src="~/img/nsx/gog.png">
+            <div class="content">
+                <button value="4" id="btnGOG" class="btn-success">Xem game của hãng<i class="fas fa-seedling"></i></button>
+            </div>
+        </div>
+    </div>
+
+</section>
+@* end Danh muc*@
+@{ var i = 1;}
+<section class="menu">
+    <div class="box-container">
+        @foreach (var item in Model)
+        {
+            i++;
+            if (i <= 13)
+            {
+                <div class="box">
+                    <div class="image">
+                        <img src="/img/@item.Anh" />
+                    </div>
+
+                    <div class="content">
+                        <h3>@item.TenSanPham</h3>
+                        <div class="price">
+                            <p>Giá: @(item.GiaBan?.ToString("#,##0")) VND </p>
+                        </div>
+                        <a class="btn btn-success" asp-action="Detail" asp-route-id="@item.MaSanPham">Xem chi tiết</a>
+                    </div>
+
+
+                </div>
+            }
+        }
+
+    </div>
+</section>
+<script>
+    $(function () {
+        $('#btnSteam').click(function () {
+
+            console.log("");
+            $.ajax({
+                url: "/Home/ShowProduct",
+                type: "GET",
+                data: { MaSanPham: 1 },
+                success: function (dataRe) {
+                    if (dataRe == null)
+                        console.log("");
+                    else
+                        $(".box-container").html(dataRe);
+                },
+                error: function () { }
+            })
+        })
+
+        $('#btnUplay').click(function () {
+
+            console.log("");
+            $.ajax({
+                url: "/Home/ShowProduct",
+                type: "GET",
+                data: { MaSanPham: 2 },
+                success: function (dataRe) {
+                    if (dataRe == null)
+                        console.log("");
+                    else
+                        $(".box-container").html(dataRe);
+                },
+                error: function () { }
+            })
+        })
+        $('#btnOrigin').click(function () {
+
+            console.log("");
+            $.ajax({
+                url: "/Home/ShowProduct",
+                type: "GET",
+                data: { MaSanPham: 3 },
+                success: function (dataRe) {
+                    if (dataRe == null)
+                        console.log("");
+                    else
+                        $(".box-container").html(dataRe);
+                },
+                error: function () { }
+            })
+        })
+        $('#btnGOG').click(function () {
+
+            console.log("");
+            $.ajax({
+                url: "/Home/ShowProduct",
+                type: "GET",
+                data: { MaSanPham: 4 },
+                success: function (dataRe) {
+                    if (dataRe == null)
+                        console.log("");
+                    else
+                        $(".box-container").html(dataRe);
+                },
+                error: function () { }
+            })
+        })
+
+        $('#loginDirect').click(function () {
+
+        })
+    })
+    //$(function () {
+
+    //    $("#Steam").click(function () {
+    //        let id = $(this).attr("value");
+    //        $.ajax(
+    //            {
+
+    //                url: "/Home/ShopLoai?ma=" + id + "",
+    //                type: "GET",
+    //                data: { MaLoai: $("").val() },
+    //                success: function (datare) {
+    //                    $(".mess1").html(datare);
+    //                },
+    //                error: function () {
+    //                    alert("Loi");
+    //                }
+    //            });
+    //    })
+    //    $("#Uplay").click(function () {
+    //        let id = $(this).attr("value");
+
+    //        $.ajax(
+    //            {
+
+    //                url: "/Home/ShopLoai?ma=" + id + "",
+    //                type: "GET",
+    //                data: { MaLoai: $("").val() },
+    //                success: function (datare) {
+    //                    $(".mess1").html(datare);
+    //                },
+    //                error: function () {
+    //                    alert("Loi");
+    //                }
+    //            });
+    //    })
+    //    $("#Origin").click(function () {
+    //        let id = $(this).attr("value");
+
+    //        $.ajax(
+    //            {
+
+    //                url: "/Home/ShopLoai?ma=" + id + "",
+    //                type: "GET",
+    //                data: { MaLoai: $("#MaLoai").val() },
+    //                success: function (datare) {
+    //                    $(".mess1").html(datare);
+    //                },
+    //                error: function () {
+    //                    alert("Loi");
+    //                }
+    //            });
+    //    })
+    //    $("#GOG").click(function () {
+    //        let id = $(this).attr("value");
+
+    //        $.ajax(
+    //            {
+
+    //                url: "/Home/ShopLoai?ma=" + id + "",
+    //                type: "GET",
+    //                data: { MaLoai: $("#MaLoai").val() },
+    //                success: function (datare) {
+    //                    $(".mess1").html(datare);
+    //                },
+    //                error: function () {
+    //                    alert("Loi");
+    //                }
+    //            });
+    //    })
+    //})
+
+
+</script>

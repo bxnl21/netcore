@@ -1,0 +1,26 @@
+﻿@model IEnumerable<ShopGame.Models.SanPham>
+    @{ var i = 1;}
+    @foreach (var item in Model)
+    {
+    i++;
+    if (i <= 13)
+    {
+    <div class="box">
+        <div class="image">
+            <img src="/img/@item.Anh" />
+        </div>
+
+        <div class="content">
+            <h3>@item.TenSanPham</h3>
+            <div class="price">
+                <p>Giá: @(item.GiaBan?.ToString("#,##0")) VND </p>
+            </div>
+            <a class="btn btn-success" asp-action="Detail" asp-route-id="@item.MaSanPham">Xem chi tiết</a>
+        </div>
+
+
+    </div>
+    }
+    else break;
+    }
+
